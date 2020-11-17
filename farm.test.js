@@ -4,6 +4,10 @@ const {
   get_total_yield,
 } = require("./farm");
 
+
+
+
+
 describe("get_yield_for_plant", () => {
   const corn = {
     name: "corn",
@@ -16,19 +20,19 @@ describe("get_yield_for_plant", () => {
 });
 
 
-// describe("get_yield_for_crop", () => {
-//   test("Get yield for crop, simple", () => {
-//     const corn = {
-//       name: "corn",
-//       yield: 3,
-//     };
-//     const input = {
-//       crop: corn,
-//       num_crops: 10,
-//     };
-//     expect(get_yield_for_crop(input)).toBe(30);
-//   });
-// });
+describe("get_yield_for_crop", () => {
+  test("Get yield for crop, simple", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+    };
+    const input = {
+      crop: corn,
+      num_crops: 10,
+    };
+    expect(get_yield_for_crop(input)).toBe(30);
+  });
+});
 
 
 
