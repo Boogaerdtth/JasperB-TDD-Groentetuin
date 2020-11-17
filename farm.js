@@ -6,19 +6,18 @@
 
 
 
-const get_yield_for_plant = plant => {
-    return plant.yield
+const get_yield_for_plant = (plant) => plant.yield
+
+
+const get_yield_for_crop = object => {
+    //     const cornYield = object.yield;
+    //     const numberCrops = object.num_crops
+    //     return numberCrops * cornYield;
 }
 
 
 
 
-
-
-
-const get_yield_for_crop = () => {
-
-}
 
 const get_total_yield = () => {
 
@@ -47,5 +46,6 @@ const environment_factors = {
 
 
 module.exports = {
-    get_yield_for_plant
+    get_yield_for_plant,
+    get_yield_for_crop,
 };
