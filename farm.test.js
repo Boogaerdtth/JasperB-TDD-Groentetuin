@@ -9,6 +9,7 @@ const {
   get_total_profit,
   get_profit_for_plant,
   get_profit_for_crop,
+  get_yield_for_plant_with_factors,
 } = require("./farm");
 
 
@@ -99,8 +100,6 @@ describe("get_costs_for_crop", () => {
 });
 
 
-
-
 // Opdracht 2
 describe("get_revenue_for_plant", () => {
   const corn = {
@@ -130,9 +129,7 @@ describe("get_revenue_for_crop", () => {
   });
 });
 
-// 3e Opdracht
-
-
+// Opdracht 3
 describe("get_profit_for_plant", () => {
   const corn = {
     name: "corn",
@@ -182,6 +179,46 @@ describe("get_total_profit", () => {
     expect(get_total_profit({ crops })).toBe(37);
   });
 });
+
+
+
+// Opdracht 4
+describe("get_yield_for_plant_with_factors", () => {
+  const corn = {
+    name: "corn",
+    yield: 100,
+    factors: {
+      sun: {
+        low: -50,
+        medium: 0,
+        high: 50,
+      },
+      wind: {
+        low: 0,
+        medium: -30,
+        high: -60,
+      },
+    },
+  };
+  const environment_factors_low = {
+    sun: "low",
+    wind: "low"
+  };
+  const environment_factors_high = {
+    sun: "high",
+    wind: "low"
+  };
+  test("Get yield for plant with factors: sun = low, wind = low", () => {
+    expect(get_yield_for_plant_with_factors(corn, environment_factors_low)).toBe(50);
+  });
+  test("Get yield for plant with factors: sun = high, wind = low", () => {
+    expect(get_yield_for_plant_with_factors(corn, environment_factors_high)).toBe(150);
+  });
+});
+
+
+
+
 
 
 

@@ -1,10 +1,3 @@
-// const get_costs_for_crop
-// const get_revenue_for_crop
-// const get_profit_for_crop
-// const get_total_profit
-// const get_yield_for_plant
-
-
 // onderstaande testen werkend krijgen
 // 1
 const get_yield_for_plant = (plant) => plant.yield
@@ -25,7 +18,6 @@ const get_total_yield = ({ crops }) => {
 
 
 // 1e opdracht 
-
 const get_costs_for_plant = input => input.costs;
 
 const get_costs_for_crop = (input) => {
@@ -33,7 +25,6 @@ const get_costs_for_crop = (input) => {
     const costs_for_crop = costs_for_plant * input.num_crops;
     return costs_for_crop;
 }
-
 
 // 2e opdracht
 const get_revenue_for_plant = (plant) => {
@@ -46,7 +37,6 @@ const get_revenue_for_crop = (input) => {
 }
 
 // 3e Opdracht
-
 const get_profit_for_plant = (plant) => {
     return get_revenue_for_plant(plant) - get_costs_for_plant(plant);
 }
@@ -64,25 +54,44 @@ const get_total_profit = (input) => {
 }
 
 
+// Opdracht 4
+const get_yield_for_plant_with_factors = (plant, factors) => {
+    const plantYieldNoFactors = plant.yield;
+    const environmentFactorSun = factors.sun;
+    const environmentFactorWind = factors.wind;
+    const plantFactorSun = plant.factors.sun[environmentFactorSun];
+    const plantFactorWind = plant.factors.wind[environmentFactorWind];
+    let plantYieldWithSunFactor = 0;
+    let plantYieldWithWindFactor = 0;
+    if (plantFactorSun === 0) {
+        plantYieldWithSunFactor = plantYieldNoFactors;
+    }
+    else if (Math.sign(plantFactorSun) === 1) {
+        plantYieldWithSunFactor = ((plantFactorSun / 100) * plantYieldNoFactors) + plantYieldNoFactors;
+    }
+    else {
+        plantYieldWithSunFactor = (plantYieldNoFactors * (plantFactorSun / 100)) + plantYieldNoFactors;
+    }
+    if (plantFactorWind === 0) {
+        plantYieldWithWindFactor = plantYieldWithSunFactor;
+        return plantYieldWithWindFactor;
+    }
+    else if (Math.sign(plantFactorWind) === 1) {
+        plantYieldWithWindFactor = ((plantFactorWind / 100) * plantYieldWithSunFactor) + plantYieldWithSunFactor;
+        return plantYieldWithWindFactor;
+    }
+    else {
+        plantYieldWithWindFactor = (plantYieldWithSunFactor * (plantFactorWind / 100)) + plantYieldWithSunFactor;
+        return plantYieldWithWindFactor;
+    }
+
+}
 
 
 
 
-// const corn = {
-//     name: "corn",
-//     yield: 30,
-//     factors: {
-//         sun: {
-//             low: -50,
-//             medium: 0,
-//             high: 50,
-//         },
-//     },
-// };
 
-// const environment_factors = {
-//     sun: "low",
-// };
+
 
 
 module.exports = {
@@ -96,4 +105,5 @@ module.exports = {
     get_profit_for_plant,
     get_profit_for_crop,
     get_total_profit,
+    get_yield_for_plant_with_factors,
 };
