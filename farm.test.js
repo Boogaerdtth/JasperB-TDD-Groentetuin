@@ -6,6 +6,9 @@ const {
   get_costs_for_plant,
   get_revenue_for_crop,
   get_revenue_for_plant,
+  get_total_profit,
+  get_profit_for_plant,
+  get_profit_for_crop,
 } = require("./farm");
 
 
@@ -127,6 +130,58 @@ describe("get_revenue_for_crop", () => {
   });
 });
 
+// 3e Opdracht
+
+
+describe("get_profit_for_plant", () => {
+  const corn = {
+    name: "corn",
+    yield: 30,
+    costs: 15,
+    sale_price: 5,
+  };
+  test("Get profit for one plant", () => {
+    expect(get_profit_for_plant(corn)).toBe(135);
+  });
+});
+
+describe("get_profit_for_crop", () => {
+  test("Get profit for crop", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      costs: 1,
+      sale_price: 2,
+    };
+    const input = {
+      crop: corn,
+      num_crops: 10,
+    };
+    expect(get_profit_for_crop(input)).toBe(50);
+  });
+});
+
+describe("get_total_profit", () => {
+  test("Calculate total profit with multiple crops", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      costs: 1,
+      sale_price: 2,
+    };
+    const pumpkin = {
+      name: "pumpkin",
+      yield: 4,
+      costs: 2,
+      sale_price: 2,
+    };
+    const crops = [
+      { crop: corn, num_crops: 5 },
+      { crop: pumpkin, num_crops: 2 },
+    ];
+    expect(get_total_profit({ crops })).toBe(37);
+  });
+});
 
 
 

@@ -45,6 +45,24 @@ const get_revenue_for_crop = (input) => {
     return revenue_for_crop;
 }
 
+// 3e Opdracht
+
+const get_profit_for_plant = (plant) => {
+    return get_revenue_for_plant(plant) - get_costs_for_plant(plant);
+}
+const get_profit_for_crop = (input) => {
+    const profit_for_plant = get_profit_for_plant(input.crop);
+    const profit_for_crop = profit_for_plant * input.num_crops;
+    return profit_for_crop;
+}
+const get_total_profit = (input) => {
+    let total_profit = 0;
+    input.crops.forEach(crop => {
+        total_profit += get_profit_for_crop(crop);
+    });
+    return total_profit;
+}
+
 
 
 
@@ -75,5 +93,7 @@ module.exports = {
     get_costs_for_plant,
     get_revenue_for_crop,
     get_revenue_for_plant,
-
+    get_profit_for_plant,
+    get_profit_for_crop,
+    get_total_profit,
 };
