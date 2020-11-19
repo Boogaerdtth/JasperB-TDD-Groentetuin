@@ -88,6 +88,13 @@ const get_yield_for_plant_with_factors = (plant, factors) => {
 }
 
 
+// Opdracht 5
+const get_yield_for_crop_with_factors = (input, factors) => {
+    const yield_for_plant_with_factors = get_yield_for_plant_with_factors(input.crop, factors);
+    const yield_for_crop_with_factors = yield_for_plant_with_factors * input.num_crops;
+    return yield_for_crop_with_factors;
+}
+
 
 
 
@@ -106,4 +113,5 @@ module.exports = {
     get_profit_for_crop,
     get_total_profit,
     get_yield_for_plant_with_factors,
+    get_yield_for_crop_with_factors,
 };
