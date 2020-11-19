@@ -2,10 +2,14 @@ const {
   get_yield_for_plant,
   get_yield_for_crop,
   get_total_yield,
+  get_costs_for_crop,
+  get_costs_for_plant,
+  get_revenue_for_crop,
+  get_revenue_for_plant,
 } = require("./farm");
 
 
-
+// 1
 describe("get_yield_for_plant", () => {
   const corn = {
     name: "corn",
@@ -17,7 +21,7 @@ describe("get_yield_for_plant", () => {
   });
 });
 
-
+// 2
 describe("get_yield_for_crop", () => {
   test("Get yield for crop, simple", () => {
     const corn = {
@@ -33,7 +37,7 @@ describe("get_yield_for_crop", () => {
 });
 
 
-
+// 3
 describe("get_total_yield", () => {
   test("Calculate total yield with multiple crops", () => {
     const corn = {
@@ -61,3 +65,69 @@ describe("get_total_yield", () => {
     expect(get_total_yield({ crops })).toBe(0);
   });
 });
+
+
+
+// Opdracht 1
+describe("get_costs_for_plant", () => {
+  const corn = {
+    name: "corn",
+    yield: 30,
+    costs: 15,
+  };
+  test("Get costs for one seed", () => {
+    expect(get_costs_for_plant(corn)).toBe(15);
+  });
+});
+
+describe("get_costs_for_crop", () => {
+  test("Get costs for crop", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      costs: 1,
+    };
+    const input = {
+      crop: corn,
+      num_crops: 10,
+    };
+    expect(get_costs_for_crop(input)).toBe(10);
+  });
+});
+
+
+
+
+// Opdracht 2
+describe("get_revenue_for_plant", () => {
+  const corn = {
+    name: "corn",
+    yield: 30,
+    costs: 15,
+    sale_price: 5,
+  };
+  test("Get revenue for one plant", () => {
+    expect(get_revenue_for_plant(corn)).toBe(150);
+  });
+});
+
+describe("get_revenue_for_crop", () => {
+  test("Get revenue for crop", () => {
+    const corn = {
+      name: "corn",
+      yield: 3,
+      costs: 1,
+      sale_price: 2,
+    };
+    const input = {
+      crop: corn,
+      num_crops: 10,
+    };
+    expect(get_revenue_for_crop(input)).toBe(60);
+  });
+});
+
+
+
+
+
