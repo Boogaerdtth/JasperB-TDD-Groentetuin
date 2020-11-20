@@ -1,21 +1,14 @@
-// onderstaande testen werkend krijgen
-// 1
+// Test werkend krijgen 1
 const get_yield_for_plant = (plant) => plant.yield
 
-// 2
-const get_yield_for_crop = (input) => {
-    const yield_for_crop = get_yield_for_plant(input.crop) * input.num_crops;
-    return yield_for_crop;
-}
+// Test werkend krijgen 2
+const get_yield_for_crop = input => get_yield_for_plant(input.crop) * input.num_crops;
 
-// const get_yield_for_crop = input => get_yield_for_plant(input.crop) * input.num_crops;
-
-// 3
+// Test werkend krijgen 3
 const get_total_yield = ({ crops }) => {
     yieldFromAllCrops = crops.map(crop => get_yield_for_crop(crop));
     return yieldFromAllCrops.reduce((a, b) => a + b)
 };
-
 
 // 1e opdracht 
 const get_costs_for_plant = input => input.costs;
@@ -53,7 +46,6 @@ const get_total_profit = (input) => {
     return total_profit;
 }
 
-
 // Opdracht 4
 const get_yield_for_plant_with_factors = (plant, factors) => {
     const plantYieldNoFactors = plant.yield;
@@ -87,7 +79,6 @@ const get_yield_for_plant_with_factors = (plant, factors) => {
 
 }
 
-
 // Opdracht 5
 const get_yield_for_crop_with_factors = (input, factors) => {
     const yield_for_plant_with_factors = get_yield_for_plant_with_factors(input.crop, factors);
@@ -95,11 +86,25 @@ const get_yield_for_crop_with_factors = (input, factors) => {
     return yield_for_crop_with_factors;
 }
 
-
-
-
-
-
+// Opdracht 6
+const get_revenue_for_plant_with_factors = (plant, factors) => {
+    return plant.sale_price * get_yield_for_plant_with_factors(plant, factors);
+}
+const get_profit_for_plant_with_factors = (plant, factors) => {
+    return get_revenue_for_plant_with_factors(plant, factors) - get_costs_for_plant(plant);
+}
+const get_profit_for_crop_with_factors = (input, factors) => {
+    const profit_for_plant_with_factors = get_profit_for_plant_with_factors(input.crop, factors);
+    const profit_for_crop_with_factors = profit_for_plant_with_factors * input.num_crops;
+    return profit_for_crop_with_factors;
+}
+const get_total_profit_with_factors = (input, factors) => {
+    let total_profit_with_factors = 0;
+    input.crops.forEach(crop => {
+        total_profit_with_factors += get_profit_for_crop_with_factors(crop, factors);
+    });
+    return total_profit_with_factors;
+}
 
 module.exports = {
     get_yield_for_plant,
@@ -114,4 +119,7 @@ module.exports = {
     get_total_profit,
     get_yield_for_plant_with_factors,
     get_yield_for_crop_with_factors,
+    get_profit_for_plant_with_factors,
+    get_profit_for_crop_with_factors,
+    get_total_profit_with_factors,
 };
