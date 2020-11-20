@@ -15,8 +15,6 @@ const {
   get_total_profit_with_factors,
 } = require("./farm");
 
-// ALLEEN NOG DE LAATSTE KEER COMMITTEN!! OPDRACHT 6!!!!!!!!
-
 // test werkend krijgen 1
 describe("get_yield_for_plant", () => {
   const corn = {
